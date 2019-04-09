@@ -29,6 +29,29 @@
         dentro de uma função e etc. A boa prática é sempre bom utilizar ele dentro das funções
 
 
+        08/04/2019 -
+
+        Formas de selecionar os elementos:
+
+        document.getElementById(); - seleciona o elemento pelo ID do mesmo.
+
+        document.getElementByTagName(); - seleciona o elemento pelo nome do mesmo ("p, div, e etc").
+        
+        document.getElementsByClassName() - seleciona todos os elementos que contem a classe em específico. 
+        Para refenciar corretamente o elemento específico que deseja é necessário colocar um referenciador
+        de array. 
+        Ex:
+        document.getElementsByClassName("classe")[0]
+        
+        document.querySelector() - seleciona diretamente o elemento em específico, sem precisar referenciar o indice
+        do mesmo. Exatamente como acontece no css e no jquery. Caso tenha mais de um elemento ele irá
+        selecionar apenas um elemento, e sempre será o primeiro (de índice 0).
+
+        document.querySelectorAll() - seleciona uma coleção de objetos referenciados pelo seletor. É
+        necessário passar o índice do elemento para especificar qual selecionar em específico.
+        Ex:
+        document.querySelectorAll(".class")[0]
+        
 
      -->
 
