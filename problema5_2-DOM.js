@@ -17,6 +17,7 @@ function calcularMedia () {
 }
 
 (function(){
+    debugger;
     var trs = document.querySelectorAll(".aluno");
 
     var x = 0;

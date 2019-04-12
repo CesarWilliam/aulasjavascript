@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index DOM 0</title>
+</head>
+<body>
+    
+<!--  
+
+    11/04/2019 -
+
+    Event Handler: Atrelando eventos no DOM nível 0 
+
+    Exemplo de evendo no DOM nível 0 no html:                  Exemplo de evendo nível 0 no js:
+    <p onclick="função()">                                     p.onclick=funcao       
+            
+    Evento no DOM nível 2:
+    p.addEventListener("click", funcao);
+
+    Exemplo de click:
+
+    var $d1 = document.querySelector("#d1");
+
+    $d1.addEventListener("click", function(){
+        console.log("teste");  
+    });
+
+
+    stopPropagation(); = para de propagar o eventos em si
+    
+    Exemplo: 
+    $d1.addEventListener("click", function(e){
+        console.log("teste");
+        e.stopPropagation();  
+    });
+
+
+    this = são o objeto a qual foi atrelado o click, por exemplo: 
+    <ul onclick="function()">
+        <li></li>
+    </ul>
+
+    nesse caso, se ocorrer o click na li, o this será a ul, onde está o evento  
+
+
+    target = não é o objeto no qual foi atrelado o evento, mas sim o objeto que disparou o evento. Exemplo:
+    <ul onclick="function()">
+        <li></li>
+    </ul>
+    nesse caso, se ocorrer o clicl na li, o target é a li.
+
+
+    currentTarget = são o objeto a qual foi atrelado o click, por exemplo: 
+    <ul onclick="function()">
+        <li></li>
+    </ul>
+
+    nesse caso, se ocorrer o click na li, o currentTarget será a ul, onde está o evento 
+
+
+    target.nodeName = refere ao elemento que foi clicado. Se clicar em um li, trás LI no target
+-->
+
+</body>
+</html>
