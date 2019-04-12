@@ -64,5 +64,106 @@
     target.nodeName = refere ao elemento que foi clicado. Se clicar em um li, trás LI no target
 -->
 
+
+
+<!-- Problema 1 - form - evento -->
+
+<!-- Permitir o envio de um formulário somente após o usuário aceitar os termos do contrato (checkbox). -->
+<!-- Para estre exemplo, vamos habilitar ou desabilitar o botão dependendo do checkbox. -->
+
+<div class="form">
+
+    <form action="#">
+
+        <textarea id="contrato" cols="50" rows="10" readonly>Contrato de serviço prestados</textarea>
+        <br>
+        <label>
+            <input type="checkbox" id="chk" checked> Li e aceito os termos desse contrato
+        </label>
+        <br>
+        <input type="submit" value="Continuar" id="btn">
+
+    </form>
+
+    <script>
+        (function(){
+            'use strict';
+
+            var $btn = document.getElementById('btn'),
+                $chk = document.getElementById('chk');
+
+            toggleBtn();
+
+            $chk.addEventListener('change', function(){
+                toggleBtn();
+            });
+
+            function toggleBtn() {
+                $btn.disabled = !$chk.checked; // botão será desabilitado quando o checkbox não estiver checkado 
+            }
+
+        })();
+    </script>
+
+</div>
+
+
+
+<!-- Problema 2 -->
+<!-- Fazer uma pequena lista de tarefas onde o usuário pode acrescentar um novo item (li) na lista (ul) através de um input e um botão. -->
+<!-- Esta lista deve estar preenchida previamente com três itens quaisquer. -->
+<!-- Acrescentar eventos de click em cada li para marcar como feito. -->
+
+<div class="div-problema" style="margin-top: 100px;">
+
+    <input type="text" id="txtTask">
+    <button id="btn2">Cadastrar tarefa</button>
+
+    <ul>
+        <li>Estudar javascript - DOM</li>
+        <li>Estudar eventos em javascript</li>
+        <li>Jogar video-game</li>
+    </ul>
+</div>
+
+<script>
+
+    (function(){
+        'use strict';
+
+        var $ul = document.querySelector('ul'),
+            $lis = $ul.querySelectorAll('li'),
+            $txtTask = document.querySelector('#txtTask'),
+            $btn = document.querySelector('#btn2');
+
+        $btn.addEventListener('click', addTask);
+        $txtTask.addEventListener('keyup', keyup);
+
+        for(var i = 0; i < $lis.length; i++) {
+            $lis[i].addEventListener('click', toogleDone);
+        }
+
+        function toogleDone() {
+            alert('clicou');
+        }
+
+        function keyup(e) {
+            if(e.keyCode === 13) {
+                addTask(); 
+            }
+        }
+
+        function addTask() {
+            var task = '<li>' + $txtTask.value + '</li>';
+            $ul.innerHTML += task; 
+
+            $txtTask.value = '';
+            $txtTask.focus();
+        }
+
+    })();
+
+</script>
+
 </body>
 </html>
