@@ -81,5 +81,68 @@
 <!-- "Daniel Tapias Morales" será formatado em: -->
 <!-- "Morales, Daniel Tapias". -->
 
+
+<script>
+    
+    var nome = 'Daniel Tapias Morales';
+    var nomeFormatado = nomeFormatado(nome); // variável onde será armazenado o retorno da função, passando como parâmetro a variável nome.
+
+    function nomeFormatado(nome) {
+        var posicaoUltimoEspaco = nome.lastIndexOf(' '); // pega a posição do último espaço
+
+        if (posicaoUltimoEspaco <= 0) { // se não tiver algum espaço na string ele retorna o nome
+            return nome;
+        }
+
+        var ultimoNome = nome.slice(posicaoUltimoEspaco + 1); // armazena na variável tudo que estiver da posição 13 em diante. O +1 serve para não contar o último espaço em branco da string
+
+        var primeiroNome = nome.slice(0, posicaoUltimoEspaco); // armazena na variável tudo que estiver da posição 0 até a 13 da string
+
+        return ultimoNome + ', ' + primeiroNome; // pega o último valor armazenado a partir do último espaço e soma na string os primeiros valores.
+    }
+
+    console.log(nomeFormatado);
+</script>
+
+
+
+<!-- ======================================================================================================================= -->
+
+
+<!-- Desafio -->
+<!-- Selecionar todos os parágrafos de uma página e, se o texto tiver mais do que duzentos caracteres, mostrar somente os duzentos primeiros seguidos de reticencias. -->
+
+<div class="desafio">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat lacus id velit ornare dignissim. Pellentesque ac posuere sapien, vitae dignissim nisl. Cras imperdiet consequat dui sit amet sollicitudin.</p>
+    <p>Vestibulum varius feugiat tincidunt. Sed imperdiet luctus laoreet. Donec ultricies lacus rutrum, finibus purus eget, commodo nibh. Aliquam sagittis tempus viverra. Vivamus nibh sem, molestie id metus non, imperdiet fringilla lacus. Nulla ultrices accumsan dignissim. Sed ullamcorper posuere interdum. Suspendisse sed ligula tincidunt, mollis metus maximus, tincidunt elit. Vestibulum ut libero diam. Aliquam erat volutpat.</p>
+    <p>Vivamus nibh sem, molestie id metus non, imperdiet fringilla lacus. Nulla ultrices accumsan dignissim. Sed ullamcorper posuere interdum. Suspendisse sed ligula tincidunt, mollis metus maximus, tincidunt elit. Vestibulum ut libero diam. Aliquam erat volutpat.</p>
+    <p>Cras nisl erat, efficitur ut erat vel, ullamcorper commodo ante. Vivamus metus odio, vulputate vel tincidunt et, rutrum id odio. Sed convallis lorem sed dignissim ultrices. Quisque sit amet turpis aliquet, molestie elit eget, rhoncus ipsum. Donec laoreet dolor imperdiet sodales lobortis. Vestibulum molestie turpis in mauris fermentum cursus. Donec vulputate turpis nec fermentum aliquam.</p>
+    <p>Suspendisse nibh metus, aliquet varius libero euismod, eleifend molestie ex. Morbi eu augue sed odio placerat efficitur et at quam.</p>
+    <p>Maecenas a ante faucibus lacus luctus elementum. Pellentesque pellentesque lorem non dui efficitur, et egestas lacus scelerisque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In sodales dapibus mauris id dictum.</p>
+    <p>Aenean ut lacinia lacus. Cras pretium orci lacus, vel lacinia mauris varius nec. Fusce ornare imperdiet tortor, a faucibus elit porttitor a. Phasellus dictum dui eget varius egestas. Integer vel odio a diam porttitor pulvinar non id quam. Phasellus et elementum neque. Duis sed molestie magna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean tincidunt magna lectus, ut mollis neque accumsan quis. Donec sed aliquet sem. Cras enim lorem, viverra et molestie in, blandit non lorem. Nulla euismod molestie urna ac imperdiet. Praesent id sollicitudin sem. Fusce quis mi urna.</p>
+</div>
+
+<script>   
+
+(function(){
+    var p = document.querySelectorAll('p'); // cria um array com todos os <p> do site
+
+    var x = 0;
+    while(p[x]) {
+        var tamanho = p[x].innerHTML.length; // a variável "tamanho" armazena o tamanho da string dentro do elemento
+        var texto = p[x].innerHTML; // a variável "texto" armazena a string dentro do elemento
+
+        if (tamanho > 200) { // se a string tiver mais que 200 caracteres
+            var txt = texto.slice(0, 200); // variável "txt" armazena a variável "texto" da posição 0 até 200
+            p[x].innerHTML = txt + '...'; // pega o conteúdo do elemento <p> e troca por "txt" + 3 pontinhos.
+        }
+
+        x++;
+    }
+
+})();
+
+</script>
+
 </body>
 </html>
