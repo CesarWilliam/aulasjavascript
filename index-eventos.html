@@ -16,6 +16,8 @@
 
     Exemplo de evendo no DOM nível 0 no html:                  Exemplo de evendo nível 0 no js:
     <p onclick="função()">                                     p.onclick=funcao       
+
+    ==================================================================================================================    
             
     Evento no DOM nível 2:
     p.addEventListener("click", funcao);
@@ -28,6 +30,7 @@
         console.log("teste");  
     });
 
+    ==================================================================================================================
 
     stopPropagation(); = para de propagar o eventos em si
     
@@ -37,6 +40,7 @@
         e.stopPropagation();  
     });
 
+    ==================================================================================================================
 
     this = são o objeto a qual foi atrelado o click, por exemplo: 
     <ul onclick="function()">
@@ -45,6 +49,7 @@
 
     nesse caso, se ocorrer o click na li, o this será a ul, onde está o evento  
 
+    ==================================================================================================================
 
     target = não é o objeto no qual foi atrelado o evento, mas sim o objeto que disparou o evento. Exemplo:
     <ul onclick="function()">
@@ -52,6 +57,7 @@
     </ul>
     nesse caso, se ocorrer o clicl na li, o target é a li.
 
+    ==================================================================================================================
 
     currentTarget = são o objeto a qual foi atrelado o click, por exemplo: 
     <ul onclick="function()">
@@ -60,8 +66,19 @@
 
     nesse caso, se ocorrer o click na li, o currentTarget será a ul, onde está o evento 
 
+    ==================================================================================================================
 
     target.nodeName = refere ao elemento que foi clicado. Se clicar em um li, trás LI no target
+
+    ==================================================================================================================
+
+    Adicionar e remover classes no js:
+    Ex:
+    this.classList.add('teste');
+
+    this.classList.remove('teste');
+
+    this.classList.toggle('teste');
 -->
 
 
@@ -112,7 +129,7 @@
 <!-- Problema 2 -->
 <!-- Fazer uma pequena lista de tarefas onde o usuário pode acrescentar um novo item (li) na lista (ul) através de um input e um botão. -->
 <!-- Esta lista deve estar preenchida previamente com três itens quaisquer. -->
-<!-- Acrescentar eventos de click em cada li para marcar como feito. -->
+<!-- O cliente pediu para fazer com que, ao clicar num item da lista, pergunte ao usuário se ele quer excluir. Se confirmado, efetuar a remoção. -->
 
 <div class="div-problema" style="margin-top: 100px;">
 
@@ -139,12 +156,16 @@
         $btn.addEventListener('click', addTask);
         $txtTask.addEventListener('keyup', keyup);
 
-        for(var i = 0; i < $lis.length; i++) {
-            $lis[i].addEventListener('click', toogleDone);
-        }
+        $ul.addEventListener('click', function(e){
+            if(e.target.nodeName === 'LI') {
+                removeTask(e.target);
+            }
+        });
 
-        function toogleDone() {
-            alert('clicou');
+        function removeTask(li) {
+            if (confirm('deseja excluir ' + li.textContent + '?')) {
+                li.parentNode.removeChild(li);
+            }
         }
 
         function keyup(e) {
@@ -153,17 +174,27 @@
             }
         }
 
-        function addTask() {
-            var task = '<li>' + $txtTask.value + '</li>';
-            $ul.innerHTML += task; 
+        function addTask() {            
+            var li = document.createElement('li'),
+                text = document.createTextNode($txtTask.value);
+
+            li.appendChild(text);
+            $ul.appendChild(li);
 
             $txtTask.value = '';
             $txtTask.focus();
         }
-
+ 
     })();
 
 </script>
+
+
+
+
+<!-- Desafio -->
+<!-- Fazer um hambúrguer menu utilizando as técnicas vistas até o momento. O html e o css estão disponíveis para download. -->
+<!-- Sabemos que o toggle() do objeto classList não funciona em IEs mais antigos. Mas se o usuário estiver em um mobile, ele estará usando o IE antigo? -->
 
 </body>
 </html>
