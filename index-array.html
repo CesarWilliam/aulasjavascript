@@ -21,7 +21,6 @@
     arr.lenght; == retorna "5".
 
     ==================================================================================================================
-
     
     every() - retorna um boleano dentro do array, a partir de uma condição setada. Para ser true a condição do array, todos os elementos precisam seguir
     o mesmo padrão, tipo number, ou string
@@ -45,7 +44,39 @@
 
     ==================================================================================================================
 
-    filter() - 
+    filter() - retorna como se fosse um outro array, contendo os objetos que satisfaça uma condição
+
+    Exemplo:
+
+    var arr = ['1', 2,3,4,5, 'oi', 20, '30'];
+
+    var numeros = arr.filter(function(el, indice, arr){
+        return typeof el === 'number';
+    });
+    console.log(numeros); == retorna "[2,3,4,5,20]"
+
+    ==================================================================================================================
+
+    forEach() - um for sem utilizar condições
+
+    Exemplo:
+
+    var arr = ['1', 2,3,4,5, 'oi', 20, '30'];
+
+    arr.forEach(function(el, i, arr){
+        console.log('el=', el, 'i=', i, 'i-', arr.toString());
+    });
+
+    ==================================================================================================================
+
+    indexOf() - mostra a posição do elemento no array
+
+    Exemplo:
+
+    var arr = ['1', 2,3,4,5, 'oi', 20, '30'];
+
+    var posicao = arr.indexOf('oi');
+    console.log(posicao) == retorno "5"
 
     ==================================================================================================================
 
