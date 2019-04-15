@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index - math</title>
+</head>
+<body>
+
+<!-- Exemplos de Math (min(), max(), round(), floor(), ceil(), pow(), sqrt(), cbrt(), random()) 
+
+    min() - retorna o valor mínimo de um número dentro de um grupo de números passados por parâmetros
+
+    Exemplo: 
+
+    Math.min(2,3,4); == retorna "2";
+
+    ==================================================================================================================
+
+    max() - retorna o valor máximo de um número dentro de um grupo de números passados por parâmetros
+
+    Exemplo: 
+
+    Math.max(2,3,4); == retorna "4";
+
+    ==================================================================================================================
+
+    round() - retorna o valor arredondado para cima.
+    
+    Exemplo:
+
+    Math.round(55.49); == retorna "55";
+
+    ==================================================================================================================
+
+    floor() - retorna o valor arredondado para baixo.
+
+    Exemplo:
+
+    Math.floor(55.999); == retorna "55";
+
+    ==================================================================================================================
+
+    ceil() - retorna o valor arredondado para cima.
+
+    Exemplo:
+
+    Math.ceil(55.01); == retorna "56";
+
+    ==================================================================================================================
+
+    pow() - eleva os parâmetros à potência.
+
+    Exemplo:
+
+    Math.pow(2, 3); == retorna "8";
+
+    ou também pode ser:
+
+    2 ** 3 == retorna "8"
+
+    ==================================================================================================================
+
+    sqrt() - retorna o valor à raiz quadrada.
+
+    Exemplo:
+
+    Math.sqrt(25); == retorna "5";
+
+    ==================================================================================================================
+
+    cbrt() - retorna o valor à raiz cúbica.
+
+    Exemplo:
+
+    Math.sqrt(8); == retorna "2";
+
+    ==================================================================================================================
+
+    random() - retorna um valor aleatório de 0 até 1.
+
+    Exemplo:
+
+    Math.random(); == retorna "0.1254789614";
+
+-->
+
+
+
+<!-- Desafio -->
+<!-- Criar uma função chamda sortear que deve receber por parãmetro o número de valores possíveis de serem retornados pela função. -->
+<!-- Ex: sortear(2) deve retornar o ou 1; sortear(10) deve retornar números de 0 a 9. -->
+
+<script>
+
+function sortear(max) {
+    var result = Math.random() * ((max - 1) - 0) + 0;
+    return Math.round(result);
+}
+
+var sortear = sortear(10);
+console.log(sortear);  
+</script>
+    
+</body>
+</html>

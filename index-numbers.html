@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index - Numbers</title>
+</head>
+<body>
+    
+<!-- Exemplos de Numbers (MAX_VALUE, MIN_VALUE, toFixed(), toPrecision(), toString(), toExponential()) 
+
+    MAX_VALUE e MIN_VALUE - são propriedades estáticas, onde eles representam o valor mínimo e máximo em que o javascript pode ler e maniuplar
+
+    ==================================================================================================================
+
+    toFixed() - ele trata os valores das casas decimais
+
+    Exemplo:
+
+    var x = 12345.6789
+
+    x.toFixed(2) == retorna 12345.68
+
+    Exemplo2:
+
+    var x = 12345.6789
+
+    x.toFixed(10) == retorna 12345.678900000
+
+    ==================================================================================================================
+
+    toPrecision() - função que retorna o número de caracteres setados
+
+    Exemplo:
+
+    var n = 12.345
+
+    n.toPrecision(3) == retorna 12.3
+
+    Exemplo2:
+
+    var n = 12.345
+
+    n.toPrecision(8) == retorna 12.345000
+
+    ==================================================================================================================
+
+    toString() - converte um número em string. Com o toString você consegue mudar a base do número
+
+    Exemplo:
+
+    var n = 12;
+
+    n.toString(2) == retorna 1100 - o valor retorna em base binária 
+
+    Exemplo2:
+
+    var n = 16;
+
+    n.toString(16) == retorna 10 - o valor retorna em base hexadecimal 
+
+    ==================================================================================================================
+
+    toExponential() - retorna os valores em exponencial.
+
+    Exemplo:
+
+    var n = 100;
+
+    n.toExponential() == retorna "1e+2"
+-->
+
+
+
+<!-- Desafio -->
+<!-- Tratar a saída da função que calcula a média e retorna um número com apenas duas casas decimais. -->
+
+<script>
+
+function media() {
+    var result = 0,
+        media = 0,
+        x = 0;
+
+    while(arguments[x]) {
+        result += arguments[x];        
+        x++;
+    }
+
+    return (result / arguments.length).toFixed(2);
+}
+
+var resultadoMedia = media(3,4,5);
+
+console.log(resultadoMedia);
+
+</script>
+
+ 
+</body>
+</html>
