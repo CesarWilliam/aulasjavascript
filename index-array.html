@@ -84,6 +84,18 @@
 
     ==================================================================================================================
 
+    map() - intera sobre cada elemento da array, e faz alterações em cada um deles 
+
+    var numeros = ['1', 20, 3, 4 ,5, 'oi', 20, '30'];
+
+    var numeros = numeros.map(function(el, i, arr){
+        return el * i; multiplica elemento por índice 
+    });
+
+    console.log(numeros); == retorna '[0, 20, 6, 12, 20, NaN, 120, 210]'
+
+    ==================================================================================================================
+
     some() - retorna um boleano dentro do array, a partir de uma condição setada. Para ser true a condição do array, apenas um dos elementos precisam seguir
     o mesmo padrão, tipo number, ou string.
 
@@ -96,6 +108,30 @@
     });
 
     console.log(sohNumeros); == retorna 'true'.
+
+    ==================================================================================================================
+
+    contat() - junta arrays
+
+    var arr = [1,2,3,4,5];
+
+    var numeros = [1,3,5,7,9];
+
+    var arr2 = arr.contat(numeros);
+    console.log(arr2); == retorna "[1, 2, 3, 4, 5, 1, 3, 5, 7, 9]";
+
+    ==================================================================================================================
+
+    join() - serve para transformar um array em string, podendo passar um caracter separador 
+
+    var arr = [1,2,3,4,5];
+
+    var str = arr.join(' -- ');
+    console.log(str); == retorna '1 -- 2 -- 3 -- 4 -- 5';
+
+    ==================================================================================================================
+
+    pop() -
 
 -->
     
