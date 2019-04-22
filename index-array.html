@@ -113,6 +113,8 @@
 
     contat() - junta arrays
 
+    Exemplo:
+
     var arr = [1,2,3,4,5];
 
     var numeros = [1,3,5,7,9];
@@ -124,6 +126,8 @@
 
     join() - serve para transformar um array em string, podendo passar um caracter separador 
 
+    Exemplo:
+
     var arr = [1,2,3,4,5];
 
     var str = arr.join(' -- ');
@@ -131,7 +135,94 @@
 
     ==================================================================================================================
 
-    pop() -
+    pop() - remove o último item do array, e retorna o item removido
+
+    Exemplo:
+
+    var arr = [1,2,3,4,5];
+
+    var ultimoItem = arr.pop();
+
+    console.log(arr); == retorna '[1,2,3,4]'
+    console.log(ultimoItem); == "5"
+
+    ==================================================================================================================
+
+    push() - acrescentar elementos no array no final dele
+
+    Exemplo:
+
+    var arr = [1,2,3,4,5];
+
+    arr.push('novo item'); 
+    console.log(arr); == retorna '[1,2,3,4,5,"novo item"]'
+
+    ==================================================================================================================
+
+    reduce() - pegar um array e retornar um único valor
+
+    Exemplo: 
+
+    var arr = [0,3,8,15,80];
+
+    var somaDeArr = arr.reduce(function(anterior, atual){
+        return anterior + atual;
+    });
+
+    console.log(arr);
+    console.log(somaDeArr); == retorna '106'
+
+    ==================================================================================================================
+
+    reduceRight() - pegar um array e retornar um único valor, mas de forma invertida se for string
+
+    Exemplo: 
+
+    var arr = [0,3,8,15,80];
+
+    var somaDeArr = arr.reduceRight(function(anterior, atual){
+        return anterior + atual;
+    });
+
+    console.log(arr);
+    console.log(somaDeArr); == retorna '106'
+
+    ==================================================================================================================
+
+    reverse() - inverte a ordem dos elementos do array
+
+    Exemplo:
+
+    var arr = [0,1,2,3,4];
+
+    arr.reverse(); == retorna '[4,3,2,1,0]'
+
+    ==================================================================================================================
+
+    shift() - remove o primeiro item do array
+
+    Exemplo:
+
+    var arr = [1,2,3,4,5];
+
+    var primeiroItem = arr.shift();
+
+    console.log(arr); == retorna '[2,3,4,5]'
+    console.log(primeiroItem); == "1"
+
+    ==================================================================================================================
+
+    unshift() - acrescenta elementos no início do array
+
+    Exemplo:
+
+    var arr = [1,2,3,4,5];
+
+    arr.unshift(true, false, 'oi');
+
+    console.log(arr); == retorna '[true, false,'oi',2,3,4,5]'
+
+    ==================================================================================================================
 
 -->
     
