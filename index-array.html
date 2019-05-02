@@ -292,5 +292,52 @@ console.log('calcularMedia media2: ', media2);
 
 </script>
 
+
+<!-- Desafio -->
+<!-- Selecionar todos os parágrafos da página e, se tiver mais de 10 palavras, mostrar as primeiras 10 seguido de reticências.  -->
+
+<!-- Desafio 2 -->
+<!-- Selecionar todos os parágrafos da página e adicionar uma classe de destaque no paragráfo que contém a palavra Javascript. -->
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat lacus id velit ornare dignissim. Pellentesque ac posuere sapien, vitae dignissim nisl. Cras imperdiet consequat dui sit amet sollicitudin.</p>
+<p>Lorem ipsum dolor javascript amet, consectetur adipiscing elit.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat lacus id velit ornare dignissim. Pellentesque ac posuere sapien, vitae dignissim nisl</p>
+<p>Lorem ipsum dolor sit javascript, consectetur</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat lacus id velit ornare dignissim.</p>   
+
+<style>
+.destaque {
+    font-weight: bold;    
+}
+</style>
+
+<script>
+
+var paragrafos = document.querySelectorAll('p');
+
+var x = 0;
+
+while (paragrafos[x]) {
+    paragrafos[x].innerHTML = formataParagrafo(paragrafos[x].innerHTML);
+    
+    var temJS = paragrafos[x].textContent.toLowerCase().indexOf('javascript') >= 0;
+    paragrafos[x].className = temJS ? 'destaque' : '';
+    x++;
+}
+
+function formataParagrafo (texto) {
+    var arr = texto.split(' ');
+    console.log(arr);
+
+    if (arr.length > 10) {
+        return arr.slice(0, 10).join(' ') + '...';
+    }    
+
+    return texto; 
+}
+
+</script>
+
+
 </body>
 </html>
