@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index  - Temporizadores</title>
+</head>
+<body>
+
+    <div class="banner">
+
+    </div>
+
+    
+<!-- Exemplos de métodos de temporizadores (setTimeout(fn, ms), setInterval(fn, ms), clearTimetout(id), clearInterval(id)) -->
+
+<!-- setTimeout // temporizador onde executa algum comando pós certa quantidade de tempo-->
+<script>
+
+    let n = 0;
+
+    setTimeout(() => {
+        console.log('n', n);
+    }, 1000);
+
+</script>
+
+<!-- setInterval // temporizador onde executa algum comando sequêncialmente por um certo intervalo -->
+
+<script>
+
+    let x = 0;
+
+    var intervalo = setInterval(() => {
+        console.log('x', ++x);
+
+        // clearInterval -- comando que para a execução do intervalo -->
+        if (x > 5) {
+            clearInterval(intervalo);
+        }
+    }, 1000);
+
+</script>
+
+<!-- clearTimeout // comando que para a execução do intervalo -->
+
+<script>
+
+    var str = '';
+    var d = document.querySelector('.div');
+    var timeoutTeste = setTimeout(() => {
+
+        for (var i = 0; i < 1000; i++) {
+            str += 'i:' + i + ' -- ';
+            d.textContent += str;
+        }
+
+    }, 3000)
+
+</script>
+
+
+<!-- Problema -->
+<!-- O cliente pediu para fazer um pop-up bem irritante que pula na interface do usuário depois de 5 segundos. Este mesmo pop-up deve ser -->
+<!-- fechado automaticamente após 5 segundos (mesmo que o usuário ainda estava-o lendo.) -->
+
+<script>
+
+    (function(){
+
+        var banner = document.querySelector('.banner');
+        var timeout1 = setTimeout(() => {
+            
+            banner.classList += ' show';
+        }, 5000);
+
+        var timeout2 = setTimeout(() => {
+            banner.parentNode.removeChild(banner);
+        }, 10000);
+
+    })()
+</script>
+
+</body>
+</html>
