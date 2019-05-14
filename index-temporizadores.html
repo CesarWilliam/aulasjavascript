@@ -82,5 +82,142 @@
     })()
 </script>
 
+
+
+<!-- Desafio -->
+<!-- Mostrar Relógio. Criar uma função que retorne uma o hora atual no formato hh:mm:ss. Mostre esse texto numa div qualquer na tela. -->
+<!-- Agora execute essa função a cada 1 segundo -->
+
+<div class="relogio"></div>
+
+<script>
+
+(function(){
+
+    var $relogio = document.querySelector('.relogio');
+
+    function getHour() {
+        var data = new Date();
+        var h = formata(data.getHours());
+        var m = formata(data.getMinutes());
+        var s = formata(data.getSeconds());
+
+        return h + ":" + m + ":" + s;
+    }
+
+    function formata (t) {
+        return t < 10 ? "0" + t : t;
+    }
+
+    function mostraRelogio (atual) {
+        $relogio.textContent = atual;
+    }
+
+    setInterval(() => {
+        mostraRelogio(getHour());
+    }, 1000);    
+
+})()
+
+</script>
+
+
+
+<!-- Desafio 2 -->
+<!-- Mostrar cronômetro. Faça uma interface contendo um input text e três botões. Ao clicar no primeiro deve iniciar um cronômetro. -->
+<!-- o segundo deve pausar ou continuar. O terceiro deve resetar o cronômetro -->
+
+<input type="text" id="cronometro">
+<button id="iniciar">Iniciar</button>
+<button id="pausar">Pausar</button>
+<button id="parar">Parar</button>
+
+<script>
+
+(function(){
+
+    var $cronometro = document.querySelector('#cronometro');
+    var $iniciar = document.querySelector('#iniciar');
+    var $pausar = document.querySelector('#pausar');
+    var $parar = document.querySelector('#parar');
+
+    $iniciar.addEventListener("click", iniciar);
+    $pausar.addEventListener("click", pausar);
+    $parar.addEventListener("click", parar);
+
+    var intervalo = null;
+    var timestampClickIniciar = 0;
+    var timestampClickPausar = 0;
+    var timestampTempoDecorrido = 0;
+    var rodando = false;
+
+    function iniciar () {
+        if(rodando) return;
+        parar();
+        timestampClickIniciar = Date.now();
+        iniciarCronometro();
+        rodando = true;
+    }
+
+    function pausar() {
+        if(!$cronometro.value) return;
+        if (rodando) {
+            clearInterval(intervalo);
+            timestampClickPausar = Date.now();
+            timestampTempoDecorrido += (timestampClickPausar - timestampClickIniciar);
+        }    
+        else {
+            timestampClickIniciar = Date.now();
+            iniciarCronometro(timestampTempoDecorrido);
+        }
+
+        rodando = !rodando;
+    }
+
+    function parar () {
+        timestampClickPausar = 0;
+        timestampClickIniciar = 0;
+        timestampTempoDecorrido = 0;
+        rodando = false;
+        clearInterval(intervalo);
+        $cronometro.value = ''; 
+    }
+
+    function iniciarCronometro(tempoDecorrido) {
+        var timestamp_ms = tempoDecorrido || 0;
+
+        intervalo = setInterval(() => {
+            var timestampAgora = Date.now();
+            var diferenca = timestampAgora - timestampClickIniciar;
+            $cronometro.value = formataTimestamp(diferenca + timestamp_ms);
+        }, 100);
+    }
+
+    function formataTimestamp(diferenca) {
+
+        const MINUTO = 60 * 1000;
+
+        if (diferenca < 1000) {
+            return diferenca;
+        }                  
+        else if (diferenca < MINUTO) {
+            var s = diferenca / 1000;
+            s = parseInt(s);
+            var c = diferenca - (s * 1000); 
+
+            return s + ':' + c;
+        }
+        else {
+            var m = diferenca /  MINUTO ;
+            m = parseInt(m);
+
+            return m + ":" + formataTimestamp( diferenca - m * MINUTO );
+        }
+    }
+
+})()
+
+</script>
+
 </body>
 </html>
