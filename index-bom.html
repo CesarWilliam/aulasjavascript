@@ -88,7 +88,7 @@
         ================================================================================================================================
 
 
-        Object Location - ele trás a informação da URL da página atual aberta
+        Object Location - retorna a informação da URL da página atual aberta
         
         - .hash;
         - .host;
@@ -104,23 +104,7 @@
 
         ================================================================================================================================
 
-        .host - 
-
-        ================================================================================================================================
-
-        .hostname - 
-
-        ================================================================================================================================
-
         .href - retorna a URL da página atual
-
-        ================================================================================================================================
-
-        .pathname - 
-
-        ================================================================================================================================
-
-        .port - 
 
         ================================================================================================================================
 
@@ -130,9 +114,186 @@
         
         ================================================================================================================================
 
-        .search - 
+        .search - retorna a questão feita na página, que é inserida na url pós o ponto de interrogação "?"
+
+        ================================================================================================================================
+
+
+        Object screen - retorna dados da tela
+
+        - .availableWidth / availableHeight
+        - .width / height
+
+        ================================================================================================================================
+
+
+        Métodos
+
+        - alert();
+        - confirm();
+        - prompt();
+        - open();
+        - close();
+        - scrollTo(x,y);
+        - scrollBy(dx,dy);
+        - print();
+
+
+        scrollTo(x, y) - retorna a ação de scrollar até determinado ponto solicitado
+
+        ================================================================================================================================
+
+        scrollBy(dx, dy) - acrescenta a quantidade a ser scrollada toda vez que a ação é solicitada
+
+        ================================================================================================================================
+
+
+        Eventos - esses eventos são adicionados dentro de uma function
+
+        - load;
+        - error;
+        - resize;
+        - scroll;
+        - unload;
+        - beforeunload
+
+
+        load - evento que acontece no carregamento da página
+
+        Exemplo:
+
+        window.addEventListener('load', function() {
+
+        });
+
+        ================================================================================================================================
+
+        error - utilizado no carregamento de wireframe, json, etc.
+
+        ================================================================================================================================
+
+        resize - o evento é disparado quando a janela for alterada de tamanho
+
+        Exemplo:
+
+        window.addEventListener('resize', function() {
+
+        });
+
+        ================================================================================================================================
+
+        scroll - o evento é disparado quando a página é scrollada
+
+        Exemplo:
+
+        window.addEventListener('scroll', function() {
+
+        });
+
+        ================================================================================================================================
+
+        unload - evento acontece quando estiver fechando a página, depois do evento beforeunload  
+
+        Exemplo:
+
+        window.addEventListener('unload', function() {
+
+        });
+
+        ================================================================================================================================
+
+        beforeunload - evento acontece quando estiver fechando a página, antes do evento unload 
+        
+        Exemplo:
+
+        window.addEventListener('beforeunload', function() {
+
+        });
+
 
     -->
+
+
+<!-- Desafio -->
+<!-- Mudar a configuração do menu principal se a página tiver um scroll maior do que a altura do próprio menu -->
+
+<div class="menu" style="position: fixed; top: 0; left: 0; z-index: 2; background-color: rgba(0,0,0,.4); height: 100px; width: 100%;"></div>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora molestiae aut distinctio pariatur facere consequatur iusto dolores eius iste sapiente eos placeat ratione adipisci, totam vitae, quae animi eaque.</p>
+
+
+<script>
+
+    (function(){
+
+        elemento = document.querySelector(".menu");
+        alturaElemento = elemento.offsetHeight;
+
+        window.addEventListener('scroll', setupNav);
+
+        function setupNav () {
+            var posYScroll = getYscroll();
+
+            if (posYScroll > alturaElemento && !hasClassFx()) {
+                document.body.classList.add("fx");
+            }
+            
+            if (posYScroll <= alturaElemento && hasClassFx()) {
+                document.body.classList.remove("fx");
+            }
+        }
+
+        function getYscroll () {
+            return window.pageYOffset;
+        }
+
+        function hasClassFx () {
+            return !!document.querySelector('.fx'); 
+        }
+    })()
+
+</script>
 
 </body>
 </html>
