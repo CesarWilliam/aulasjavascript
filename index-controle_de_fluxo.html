@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index - controle de fluxo</title>
+</head>
+<body>
+
+    <!-- Saltos. Return, break e continue -->
+
+    <script>
+    
+        function testeSaltos() {
+            for (let i = 0; i < 10; i++) {
+                console.log(i);
+
+                if (i === 5) {
+                    // return 'algo' o comando return sai da função e retorna onde foi chamada a mesma
+                    // break; sai da estrutura do loop, mas não sai da função
+                    // continue; ele interrompe temporariamente o loop, mas continua o loop pulando o indice da condição
+                }
+            }
+
+            console.log('fim do loop');
+            return 'fim da função'
+        }
+
+        testeSaltos();  
+
+    </script>
+    
+</body>
+</html>
