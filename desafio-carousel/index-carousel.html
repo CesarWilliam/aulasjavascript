@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index Carousel</title>
+
+    <link rel="stylesheet" href="carousel.css">
+</head>
+<body>
+
+    <main class="content">
+        <h1>Desafio Carousel</h1>
+
+        <section class="carousel">
+            <div class="carousel__inner">
+                <div class="carousel__item">
+                    <a href="">
+                        <img src="imgs/01.jpg" alt="">
+                    </a>
+                </div>
+
+                <div class="carousel__item">
+                    <a href="">
+                        <img src="imgs/02.jpg" alt="">
+                    </a>
+                </div>
+                
+                <div class="carousel__item">
+                    <a href="">
+                        <img src="imgs/03.jpg" alt="">
+                    </a>
+                </div>
+
+                <div class="carousel__item">
+                    <a href="">
+                        <img src="imgs/04.jpg" alt="">
+                    </a>
+                </div>
+            </div>
+
+            <button class="carousel__btn carousel__btn--prev">&lt;</button>
+            <button class="carousel__btn carousel__btn--next">&gt;</button>
+            
+            <ul class="carousel__paginacao"></ul>
+        </section>
+
+    </main>
+
+    <script>
+        (function(){
+            'use strict';
+
+            //mostrar os botões de navegação e acrescentar listeners
+            let $btnPrev = document.querySelector(".carousel__btn--prev"),
+                $btnNext = document.querySelector(".carousel__btn--next"),
+                $carousel = document.querySelector(".carousel"),
+                $carouselInner = document.querySelector(".carousel__inner"),
+                $carouselItens = document.querySelectorAll(".carousel__item"),
+                $carouselPaginacao = document.querySelector('.carousel__paginacao'),
+                bannerAtual = 0,
+                qdtBanners = $carouselItens.length;                
+
+            $btnPrev.style.display = 'block'; // mostra o botão na tela
+            $btnNext.style.display = 'block'; // mostra o botão na tela
+
+            //incluir overflow hidden no .carousel
+            $carousel.style.overflowX = 'hidden';
+
+            $btnPrev.addEventListener('click', showPrev); // adiciona o evento showPrev
+            $btnNext.addEventListener('click', showNext); // adiciona o evento showNext
+
+            montaPaginacao();
+
+            function montaPaginacao() { // monta os dots no carousel
+                for (let i = 0; i < qdtBanners; i++) {
+                    adicionaLiPaginacao(i);
+                }
+            }
+
+            function adicionaLiPaginacao(i) { // adiciona cada dot dentro da paginação e adiciona o evento de click na mesma
+                var $li = document.createElement('li');
+
+                if (i === 0) $li.className = 'atual';
+
+                $li.addEventListener('click', function(){
+                    bannerAtual = i;
+                    mostrarBanner(bannerAtual);
+                });
+
+                $carouselPaginacao.appendChild($li);
+            }
+
+            function atualizaPaginacao() { // adiciona e atribui a classe que destaca o dot em que está selecionado o slider atual
+                $carouselPaginacao.querySelector('li.atual').removeAttribute('class');
+                $carouselPaginacao.querySelectorAll('li')[bannerAtual].className = 'atual';
+            }
+
+            function showPrev() { // pega o atual índice do banner e subtrai o valor e chama o método mostrarBanner com o parâmetro
+                bannerAtual--;
+                mostrarBanner(bannerAtual);
+            }
+
+            function showNext() { // pega o atual índice do banner e soma o valor e chama o método mostrarBanner com o parâmetro
+                bannerAtual++;
+                mostrarBanner(bannerAtual);
+            }               
+
+            function setupNav(bannerAtual) { // ativa ou desativa os botões quando chegar no limite do slider
+                $btnPrev.disabled = !bannerAtual > 0;
+                $btnNext.disabled = bannerAtual === qdtBanners - 1;
+            }
+
+            function mostrarBanner(bannerAtual) { // calcula a largura do item no carousel e seta uma nova posição que irá rolar no slider
+                limpaIntervalo();
+                setupNav(bannerAtual);
+
+                let largura = getComputedStyle($carouselItens[0]).width;
+                largura = parseInt(largura);
+
+                let novaPosicao = largura * bannerAtual * -1;
+
+                $carouselInner.style.transform = 'translateX('+ novaPosicao +'px)';
+
+                atualizaPaginacao();
+                iniciaIntervalo();
+            }
+
+            var intervalo = null;
+            function iniciaIntervalo() { // adiciona um interval para o carousel fazer o slider de forma automática
+                intervalo = setInterval(function(){
+                    bannerAtual++;
+
+                    if (bannerAtual >= qdtBanners) {
+                        bannerAtual = 0;
+                        mostrarBanner(bannerAtual);
+                    }
+                    else {
+                        mostrarBanner(bannerAtual);
+                    }
+                    
+                }, 2000);
+            }
+            
+            iniciaIntervalo();
+
+            function limpaIntervalo() { // limpa o intervalo
+                clearInterval(intervalo);
+            }
+
+            
+
+        })()
+    </script>
+    
+</body>
+</html>
