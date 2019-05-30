@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index Funções</title>
+</head>
+<body>
+
+    <!-- Hoisting // maneira que o javascript trabalha com variáveis e funções, como ocorre a leitura do mesmo -->
+
+    <script>
+    
+    var nome = 'Will';
+
+    function mostrarNome() {
+        console.log(nome);
+
+
+        console.log(funcTeste); // a variável funcTeste está undefined ainda, pois está abaixo do console log
+
+        var funcTeste = function() {
+            return 'foi';
+        }
+    }
+    
+    </script>
+
+
+    <!-- =============================================================================================================== -->
+
+    <!-- Callbacks // uma função que chama de volta uma outra função -->
+
+    <script>
+    
+    function foo() {
+        console.log('foo');
+    }
+
+    function executa(cb) { // método que executa uma função que é passada por parâmetro 
+        cb();
+    }
+
+    executa(foo); // chamando a função e passando por parâmetro uma outra função
+    
+    </script>
+
+
+    <!-- =============================================================================================================== -->
+
+    <!-- Encapsulamento // esconder partes de uma classe deixando tudo dentro da própria função -->
+
+    <script>
+    
+        (function(){
+            var ola = "mundo";
+
+            function mostraOla() {
+                console.log(ola);
+            }
+
+            window.mostraOla = mostraOla;
+        })();
+    
+    </script>
+
+
+    <!-- =============================================================================================================== -->
+    
+    <!-- Invocação de função -- call()// apply() -->
+
+    <script>
+    
+    function teste() {
+        console.log('oi');
+        console.log(this); // o escopo de this é exatamente oq foi passado por parâmetro
+    }
+
+    teste();
+    teste.call(); 
+    teste.apply();
+
+    var obj1 = {foo: 'bar'};
+    var obj2 = {foo: 'bar2'};
+
+    teste.call(obj1); //  com o call é possível passar parâmetros 
+    teste.apply(obj2);
+     
+    </script>
+
+
+    <!-- =============================================================================================================== -->
+
+    <!-- Bind -->
+
+    <script>
+
+        function teste() {
+            console.log(this);
+        }
+
+        var teste2 = teste.bind(window); // o bind fora da função passa o this como o objeto window
+        
+        document.addEventListener('click', function clicou() {
+            console.log(this);
+        }.bind(this)) // o bind fora da função passa o this como o objeto window
+
+    </script>
+
+
+    <!-- =============================================================================================================== -->
+
+    <!-- Encadeamento de métodos == possibilita que métodos traga as informações do objeto e adicione outro valores (o objeto retorne ele mesmo) -->
+
+    <script>
+    
+     var obj = {
+         value: 1,
+         add: function(n) {
+            this.value += n;
+            return this;
+         },
+         log: function() {
+             console.log(this.value);
+             return this;
+         }
+     }
+
+     function Add(n) {
+         this.value = n || 0;
+         this.add = function(n) {
+             this.value += n;
+             return this;
+         }
+         this.log = function() {
+             console.log(this.value);
+             return this;  
+         }
+     }
+
+     console.log()
+    
+    </script>
+
+
+    <!-- =============================================================================================================== -->
+
+    <!-- Reveal pattern -->
+
+    <script>
+    
+        // module pattern
+        var beluga = {
+            add: {
+                value: 0,
+                add: function(n) {
+                    this.add.value += n;
+                },
+                log: function() {
+                    console.log(this.value);
+                }
+            }
+        }
+    
+    </script>
+    
+    
+</body>
+</html>
