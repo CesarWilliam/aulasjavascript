@@ -13,3 +13,8 @@ Curso de javascript vanilla
 - Numbers
 - Math
 - Array
+- Date
+- Temporizadores
+- BOM 
+- Estilização
+- Controle de fluxo
