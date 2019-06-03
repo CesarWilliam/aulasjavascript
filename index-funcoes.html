@@ -146,25 +146,106 @@
 
     <!-- =============================================================================================================== -->
 
-    <!-- Reveal pattern -->
+    <!-- Reveal pattern e module pattern -->
 
     <script>
     
-        // module pattern
+        // module pattern guarda os items adicionais do objeto dentro dele mesmo, para esconder no escopo global
         var beluga = {
-            add: {
+            number: {
                 value: 0,
                 add: function(n) {
-                    this.add.value += n;
+                    this.value += n;
                 },
                 log: function() {
                     console.log(this.value);
                 }
             }
         }
+
+        // reveal pattern é o retorno (objeto) de uma função 
+        var beluga2 = (function(){
+            var n = 0;
+
+            function isNumber(_n) {
+                return typeof _n === 'number';
+            }
+
+            function _add(_n) {
+                if (isNumber(_n)) {
+                  n += _n;
+                }
+            }
+
+            function _log() {
+                console.log(n);
+            }
+
+            return {
+                add: _add,
+                log: _log
+            }
+        })()
     
     </script>
     
+    <!-- =============================================================================================================== -->
+    <!-- querySelector vs getElementById // diferença entre seletores -->
+
+    <!-- querySelector e querySelectorAll são estáticos, já o restante são métodos vivos, alterando o DOM, automáticamente reflete na variável -->
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi expedita nisi, earum dignissimos libero id eum sint tempora! Nihil voluptates veritatis ullam, obcaecati aut aperiam inventore dolores porro expedita exercitationem.</p>
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi expedita nisi, earum dignissimos libero id eum sint tempora! Nihil voluptates veritatis ullam, obcaecati aut aperiam inventore dolores porro expedita exercitationem.</p>
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi expedita nisi, earum dignissimos libero id eum sint tempora! Nihil voluptates veritatis ullam, obcaecati aut aperiam inventore dolores porro expedita exercitationem.</p>
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi expedita nisi, earum dignissimos libero id eum sint tempora! Nihil voluptates veritatis ullam, obcaecati aut aperiam inventore dolores porro expedita exercitationem.</p>
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi expedita nisi, earum dignissimos libero id eum sint tempora! Nihil voluptates veritatis ullam, obcaecati aut aperiam inventore dolores porro expedita exercitationem.</p>
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi expedita nisi, earum dignissimos libero id eum sint tempora! Nihil voluptates veritatis ullam, obcaecati aut aperiam inventore dolores porro expedita exercitationem.</p>
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi expedita nisi, earum dignissimos libero id eum sint tempora! Nihil voluptates veritatis ullam, obcaecati aut aperiam inventore dolores porro expedita exercitationem.</p>
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi expedita nisi, earum dignissimos libero id eum sint tempora! Nihil voluptates veritatis ullam, obcaecati aut aperiam inventore dolores porro expedita exercitationem.</p>
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi expedita nisi, earum dignissimos libero id eum sint tempora! Nihil voluptates veritatis ullam, obcaecati aut aperiam inventore dolores porro expedita exercitationem.</p>
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi expedita nisi, earum dignissimos libero id eum sint tempora! Nihil voluptates veritatis ullam, obcaecati aut aperiam inventore dolores porro expedita exercitationem.</p>
+
+    <script>
+    
+    window.addEventListener('DOMContentLoaded', function(){
+        var _p1 = document.querySelectorAll('p');
+        var _p2 = document.getElementsByTagName('p');
+        console.log(_p1.length, _p2.length);
+
+        var newP = document.createElement('p');
+        newP.textContent = 'novo paragrafo';
+        document.body.appendChild(newP);
+
+        console.log(_p1.length, _p2.length);
+    });
+    
+    </script>
+
+
+    <!-- =============================================================================================================== -->
+
+    <!-- Criar mini framework q abstrai métodos de acesso ao DOM -->
+
+    <script>
+        
+        (function(){
+            var blg = {};
+
+            blg.$ = document.querySelectorAll;
+
+            return blg;
+        })()
+
+    </script>
     
 </body>
 </html>
