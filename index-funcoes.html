@@ -247,5 +247,24 @@
 
     </script>
     
+
+    <!-- =============================================================================================================== -->
+
+    <!-- Criar uma função closeOrOpen() que ao ser chamada retorne 'is-open' e 'is-close' intercaladamente. -->
+    <!-- Não devemos usar nenhuma variável externa a função -->
+
+    <script>
+        
+        // closure
+        var closeOrOpen = (function(){
+            let status = 'is-close';
+            return function(){
+                status = (status === 'is-close') ? 'is-open' : 'is-close';
+                return status;
+            }
+        })()
+
+    </script>
+
 </body>
 </html>
