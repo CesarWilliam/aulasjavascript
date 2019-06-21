@@ -237,10 +237,10 @@
 
     <script>
         
-        (function(){
+        var blg = (function(){
             var blg = {};
 
-            blg.$ = document.querySelectorAll;
+            blg.$ = document.querySelectorAll.bind(document);
 
             return blg;
         })()
