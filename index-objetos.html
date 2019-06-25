@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index Objetos</title>
+</head>
+<body>
+    <!-- Objetos 
+    
+        - Literal/formais
+        - Criados com construtores
+        - Object create()
+    
+    -->
+
+    <script>
+    
+    var obj1 = {
+        name: 'obj1',
+        log: function(msg) {
+            console.log(msg);
+        }
+    }
+
+    var obj2 = new Object();
+    obj2.name = 'obj2';
+
+    function Pessoa(nome) {
+        this.nome = nome;
+        this.falar = function(msg) {
+            // console.log(this.nome + ' fala: ' + msg);
+            console.log(`${this.nome} está falando: ${msg}`); 
+        }
+
+        this.endereco = 'rua x';
+    }
+
+    var will = new Pessoa('will');  
+
+    var luana = Object.create(will);
+    luana.nome = 'Luana';
+    
+    </script>
+
+
+<!-- 
+    In - procura dentro do objeto (funciona tbm com objetos herdados)
+
+    A herança pode ser visualizada dentro do "_proto_" (protoype) no objeto
+-->
+
+    <script>
+    
+    var obj3 = {
+        'nome': 'obj3',
+        'valor': 10
+    }
+
+    var obj4 = Object.create(obj3); // o obj4 herda os atributos do obj3
+    obj4.apelido = 'meu objeto';
+    obj4.nome = 'obj4'; 
+    obj4.andar = function() {
+        console.log('andando');
+    }
+
+    for (var prop in obj4) {
+        console.log(prop);
+        console.log(obj4[prop]);
+        console.log(obj4.hasOwnProperty(obj4[prop]))
+
+        if (obj4.hasOwnProperty(prop)){
+            console.log(prop);
+            console.log(obj4[prop]);
+        }
+    }
+    
+
+    // Keys - retorna as chaves 
+
+    const keys = Object.keys(obj4); 
+    console.log(keys);
+    keys.forEach((item) => {
+        console.log('a propriedade é: ' + item);
+    });
+
+
+    // Values - retorna os valores
+
+    const values = Object.values(obj4);
+    console.log(values);
+
+
+    // Entries - retorna um array de arrays de propriedades e valores
+
+    const entries = Object.values(obj4);
+    console.log(entries);
+    
+
+    
+
+    </script>
+
+</body>
+</html>
