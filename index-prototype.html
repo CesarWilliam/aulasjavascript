@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index - Prototype</title>
+</head>
+<body>
+
+    <!-- Prototypes - protótipos de funções
+
+        - São a base para a herança em Javascript
+        - Compartilham as mesmas propriedades e métodos entre todas as instancias
+
+        - Porque usar:
+        - adicionar métodos e pripriedades em todas as instancias de uma classe.
+        - compartilhar métodos e propriedades (performance)
+        - pegar métodos emprestados
+        - criar herança no Javascript
+
+    -->
+
+    <script>
+    
+    function Animal(tipo) {
+        if (tipo) this.tipo = tipo;
+    }
+
+    Animal.prototype.obtemTipo = function(){
+        return this.tipo;
+    }
+
+    Animal.prototype.tipo = 'desconhecido';
+
+    var dog = new Animal('mamifero');
+    var cat = new Animal('mamifero');
+    var fish = new Animal();
+
+    console.log(dog, cat, fish);
+
+    function teste() {
+        console.log(arguments);
+
+        Array.prototype.forEach.call(arguments,
+        function(argument){
+            console.log('argumento: ' + argument);
+        });
+        
+    }
+    
+    teste('ola', 'mundo', 1, false);
+    
+    </script>
+    
+
+    <script>
+    
+    function Animal(tipo) {
+        if (tipo) this.tipo = tipo;
+    }
+
+    function Cachorro(nome, tipo) {
+        this.nome;
+        Animal.call(this, tipo);
+        this.constructor = Cachorro;
+    }
+
+    Cachorro.prototype = new Animal();
+
+    var toto = new Cachorro('toto', 'mamifero');
+    console.log(toto);
+
+    Animal.prototype.obtemTipo = function() {
+        return this.tipo;
+    }
+
+    Animal.prototype.tipo = 'desconhecido';
+
+    </script>
+
+
+    <!------ isPrototypeOf(); ------>
+
+    <!-- Exemplo
+        
+        Cachorro.prototype.isPrototypeOf(toto) // verifica se 'toto' é prototype(herda) do objeto 'Cachorro'
+
+    -->
+
+
+    <!------ getPrototypeOf(); ------>
+
+    <!-- Exemplo
+        
+        Object.getPrototypeOf(toto) // retorna o contrutor que gerou o prototipo do objeto Cachorro
+
+    -->
+
+
+    <!------ instanceof // operador que retorna que a instancia é uma instancia que uma determinada classe ------>
+
+    <!-- Exemplo
+        
+        toto instanceof Animal
+
+    -->
+
+
+    <!-- Problema -->
+    <!-- Alterar a função calcularMedia para utilizar prototypes para "pegar emprestado" um método de Array -->
+
+    <script>
+
+        var blg = (function(){
+            var beluga = {};
+
+            beluga.$ = document.querySelectorAll.bind(document);
+
+            Array.prototype.getMedia = function(){
+                return _calcularMedia.apply(this, this);
+            };   
+
+            function _calcularMedia() {
+                let params = arguments;
+
+                let hasNaN = Array.prototype.some.call(params, (n) => isNaN(n))
+                if (hasNaN) throw new Error('somente números');
+
+                let total = Array.prototype.reduce.call(params, function(total, atual,i){
+                    return total + parseFloat(atual);
+                });
+                return total / arguments.length;
+            }
+
+            beluga.calcularMedia = _calcularMedia;
+
+            return beluga;
+        })()
+    
+    </script>
+
+
+
+    <!-- Problema -->
+    <!-- Sabemos que o método replace da string substitui apenas a primeira ocorrência. Uma maneira de controlar isso é com RegEx -->
+    <!-- (que ainda não vimos). Será que conseguimos acrescentar um método comum a todos as strings capaz de fazer um replace global? -->
+
+    <script>
+    
+    String.prototype.replaceAll = function(busca, troca) {
+        var str = this.valueOf();
+        return str.split(busca).join(troca);
+    }
+    
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index - Orientação a Objetos</title>
+</head>
+<body>
+
+    <!-- 
+
+    Para que usar orientação a objeto:
+    - Visa facilitar a manutenção.
+    - Facilitar a modularidade
+    - Reutilização de código
+    
+    - Classe - Uma classe gera mais de um objeto.  
+    
+    -->
+
+
+    <!-- Coeção - juntar métodos e etc dentro do objeto, assim tratar as informações no próprio objeto sem precisar criar métodos fora do mesmo e tratar as info -->
+    <script>
+    
+    var aluno = {
+        nome: 'will',
+        notas: [5,6,7,8],
+    }
+
+    function pegaNotaMedia() {
+        return media;
+    }
+
+    pegaNotaMedia(aluno.notas);
+
+    // OOP
+    var aluno = {
+        nome: 'will',
+        notas: [5,6,7,8],
+        pegaNotaMedia() {
+            return this.notas;
+        }
+    }
+
+    aluno.pegaNotaMedia() // retorna a media
+
+    </script>
+    
+</body>
+</html>
