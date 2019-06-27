@@ -96,9 +96,39 @@
 
     const entries = Object.values(obj4);
     console.log(entries);
-    
 
+    </script>
+
+    <!-- Desafio -->
+    <!-- Dado dois Arrays de objetos, alunos e faltas, encontre os alunos que tenham número de faltas maior que 10. -->
+    <!-- A propriedade id no objeto Aluno é o mesmo valor que a propriedade idAluno no objeto faltas. -->
+
+    <script>
     
+    const aluno = [
+        {"_id": 1, "nome": "will"},
+        {"_id": 2, "nome": "leona"},
+        {"_id": 3, "nome": "elvis"},
+        {"_id": 4, "nome": "rambo"},
+    ];
+
+    const faltas = [
+        {"_idAluno": 1, faltas: 5},
+        {"_idAluno": 2, faltas: 11},
+        {"_idAluno": 3, faltas: 0},
+        {"_idAluno": 4, faltas: 15},
+    ];
+
+    const reprovadosPorFalta = faltas
+    .filter( (falta) => {
+        return falta.faltas > 10;
+    })
+    .map( falta => {
+        return falta._idAluno;
+    })
+    .map( idAluno => alunos.filter(aluno => aluno._id === idAluno)[0].nome)
+
+    console.table(reprovadosPorFalta);
 
     </script>
 
