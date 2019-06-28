@@ -20,20 +20,9 @@
     -->
 
 
-    <!-- Coeção - juntar métodos e etc dentro do objeto, assim tratar as informações no próprio objeto sem precisar criar métodos fora do mesmo e tratar as info -->
+    <!-- Coeção == juntar métodos e etc dentro do objeto, assim tratar as informações no próprio objeto sem precisar criar métodos fora do mesmo e tratar as info -->
     <script>
     
-    var aluno = {
-        nome: 'will',
-        notas: [5,6,7,8],
-    }
-
-    function pegaNotaMedia() {
-        return media;
-    }
-
-    pegaNotaMedia(aluno.notas);
-
     // OOP
     var aluno = {
         nome: 'will',
@@ -46,6 +35,173 @@
     aluno.pegaNotaMedia() // retorna a media
 
     </script>
+
+
+    <!-- ================================================================================================================================================== -->
+
+    <!-- Construtores == são funções construtoras que geram objetos -->
+
+    <script>
     
+    // classe geradora de objetos na ECS5
+    function ContaCorrente(cliente, numero) {
+        this.cliente = cliente;
+        this.numero = numero;
+    }
+    // comando: cc = new ContaCorrente()
+
+    // classe geradora de objetos na ECS6
+    class ContaPoupanca {
+
+        constructor(cliente, numero) {
+            this.cliente = cliente;
+            this.numero = numero;
+        }
+
+    }
+    // comando: cp = new ContaPoupanca()
+    
+    </script>
+
+
+    <!-- ================================================================================================================================================== -->
+    
+    <!-- Herança -->
+
+    <script>
+    
+    function ContaBancaria(cliente, numero) {
+        this.cliente = cliente;
+        this.numero = numero;
+    }
+
+    function ContaCorrente(cliente, numero) {   
+        ContaBancaria.call(this, cliente, numero);
+        this.constructor = ContaCorrente;
+    }
+
+    ContaCorrente.prototype = new ContaBancaria();
+    
+    </script>
+
+
+    <!-- ================================================================================================================================================== -->
+    
+    <!-- Extends -->
+
+    <script>
+    
+    class ContaBancaria {
+        constructor(cliente, numero) {
+            this.cliente = cliente;
+            this.numero = numero;
+            this.saldo = 0;
+        }
+
+        depositar(valor) {
+            this.saldo += valor;
+        }
+    }
+
+    class ContaCorrente extends ContaBancaria {
+        constructor(cliente, numero) {
+            super(cliente, numero); // chama o construtor do pai (a class ContaBancaria), sendo uma instancia de ContaCorrente
+            this.limite = 1000;
+        }
+    }
+
+    class ContaPoupanca extends ContaBancaria {
+        constructor (cliente, numero) {
+            super(cliente, numero);
+            this.aniversario = new Date();
+        }
+    }
+
+    let cc = new ContaCorrente('Will', 2);
+
+    cc.depositar(1000);
+    console.log(cc.saldo);
+
+    let cp = new ContaPoupanca('maria', 3);
+    console.log(cp.aniversario);
+
+    </script>
+
+
+    <!-- ================================================================================================================================================== -->
+    
+    <!-- Propriedades e métodos Públicos e privados -->
+
+    <script>
+
+    //=== ECS5    
+    function ContaPoupanca(cliente, numero) {
+        ContaBancaria.call(this, cliente, numero);
+
+        //privado (não aparece dentro do objeto)
+        const aniversario = new Date().getTime();
+
+        //publica (aparece e não pode ser modificada)
+        this.pegaNiver = function() {
+            return aniversario;
+        }
+    }
+
+    let cp = new ContaPoupanca('maria', 3);
+    Object.setPrototypeOf(cp, new ContaBancaria())
+
+
+    //=== ECS6
+    class ContaPoupanca extends ContaBancaria {
+        constructor(cliente, numero) {
+            super(cliente, numero);
+
+            const aniversario = new Date().getTime();
+            
+            //fake private (convenção que é privado)
+            this._aniversario = Date.now();
+
+            this.getNiver = function() {
+                return aniversario;
+            }   
+        }
+
+        //getter
+        get aniversario() {
+            return this._aniversario;
+        }
+
+        //setter
+        set aniversario(novaData) { 
+            this._aniversario = novaData;
+        }
+    }
+    
+    </script>
+
+
+    <!-- ================================================================================================================================================== -->
+    
+    <!-- Métodos e propriedades estáticos -->
+
+    
+    <script>
+    
+    //=== ECS6
+    class ContaCorrente extends ContaBancaria {
+        constructor(cliente, numero) {
+            super(cliente, numero);
+            this.limite = 1000;
+        }
+
+        static get juros() { return 15; };
+
+        static verTipo() {
+            return 'tipo conta corrente';
+        }
+    }
+    
+    </script>
+
 </body>
 </html>
