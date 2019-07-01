@@ -226,5 +226,61 @@
 
     </script>
 
+
+    <!-- Problema -->
+    <!-- Criar uma classe listaAlunos contendo ao menos três alunos. Essa lista deve ter um método obterAluno -->
+    <!-- que receberá por parâmetro o nome do aluno e retornará um objeto do tipo aluno. -->
+
+    <script>
+    
+    class listaAlunos {
+        constructor(_lista) {
+            this.lista = [].concat(_lista);
+        }
+
+        obterAluno(nome) {
+            return this.list.filter(aluno => aluno.nome === nome )[0];
+        }
+    }
+
+        
+
+    var lista = new listaAlunos(alunos);    
+    </script>
+
+
+    <!-- Problema -->
+    <!-- Na classe ListaAlunos, criar um método obterAlunosReprovadosporFalta(). Este método deverá retornar os alunos reprovados por falta. -->
+    <!-- Pergunta: Onde deve ficar armazenada a informação de número máximo de faltas: nas instâncias de alunos, na Classe Aluno, na Instância da Lista ou na Classe Lista? -->
+
+    <script>
+    
+    class listaAlunos {
+        constructor(_lista) {
+            this.lista = [].concat(_lista);
+        }
+
+        obterAluno(nome) {
+            return this.list.filter(aluno => aluno.nome === nome )[0];
+        }
+
+        obterAlunosReprovadosporFalta() {
+            let faltasPermitidas = listaAlunos.faltasPermitidas;
+            return this.lista.filter( aluno => {
+                return aluno._faltas >= faltasPermitidas
+            });
+        }
+
+        static get faltasPermitidas() {
+            return 5;
+        }
+    }
+
+    var alunos = ['Will', "Maria", "José"].map(aluno=> new Aluno(aluno));
+
+    var lista = new listaAlunos(alunos);
+    
+    </script>
+
 </body>
 </html>
