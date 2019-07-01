@@ -203,5 +203,28 @@
     
     </script>
 
+
+
+    <!-- Problema -->
+    <!-- Criar um construtor de aluno que gere objetos contendo propriedades nome e número de faltas. -->
+    <!-- Também deverá conter um método chamado adicionarFalta que acrescentará 1 na quantidade de falta. -->
+
+    <script>
+    
+    class Aluno {
+        constructor(nome) {
+            this.nome = nome; 
+            this._faltas = 0;
+        }
+
+        adicionarFaltas() {
+            this._faltas++; 
+        }
+    }
+    
+    let will = new Aluno('Will')
+
+    </script>
+
 </body>
 </html>
