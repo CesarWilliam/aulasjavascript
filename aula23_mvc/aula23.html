@@ -19,7 +19,17 @@
 	        
 		      	<h2>Média dos alunos</h2>
 
-		      	<div id="form-adiciona"></div>
+		      	<div id="form-adiciona">
+					<form action="#">
+						<input type="text" id="nome" required>
+						<input type="number" id="nota1" required min="0" max="10">
+						<input type="number" id="nota2" required min="0" max="10">
+						<input type="number" id="nota3" required min="0" max="10">
+						<input type="number" id="nota4" required min="0" max="10">
+
+						<button type="submit">Adicionar</button>
+					</form>
+				</div>
 		      	<div id="form-busca"></div>
 
 		      	
@@ -53,6 +63,11 @@
         </section>
 
         <script src="beluga2.js"></script>
+        <script src="js/Model/AlunoModel.js"></script>
+        <script src="js/Model/ListaAlunosModel.js"></script>
+		<script src="js/View/ListaAlunosView.js"></script>
+		<script src="js/Controller/ListaAlunosController.js"></script>
+        <script src="js/app.js"></script>
         
         
     </body>
