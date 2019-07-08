@@ -1,7 +1,7 @@
 class Aluno {
-    constructor(nome) {
+    constructor(nome, notas) {
         this.nome = nome;
-        this._notas = [];
+        this._notas = (notas) ? [].concat(notas) : [];
         this._id = ++Aluno.id;
     }
 

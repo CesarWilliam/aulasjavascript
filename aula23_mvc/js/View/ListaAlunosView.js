@@ -1,13 +1,7 @@
-class ListaAlunosView{
+class ListaAlunosView extends View{
     constructor(seletor){
-        this.$seletor = blg.$(seletor);
+        super(seletor);
     }
-    /*
-    <td class="aluno-n1">10</td>
-    <td class="aluno-n2">8.5</td>
-    <td class="aluno-n3">9</td>
-    <td class="aluno-n4">7.5</td>	
-                    */
     
     getTemplate(model){
         return `
