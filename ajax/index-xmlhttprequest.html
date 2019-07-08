@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index - XMLHttpRequest</title>
+</head>
+<body>
+    
+<script>
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "aula_json.json");
+    xhr.send(null);
+    xhr.onreadystatechange = verificaAjax;
+
+    function verificaAjax() {
+        console.log(xhr.readyState);
+        console.log(xhr.status);
+
+        if(xhr.readyState === 4) {
+            if(xhr.status == 200 || xhr.status === 304) {
+                console.log(xhr.responseText);
+            }
+            else {
+                alert("Erro");
+                console.log(xhr);           
+            }
+        }
+    }
+
+</script>
+
+</body>
+</html>
