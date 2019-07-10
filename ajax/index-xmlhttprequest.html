@@ -5,31 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Index - XMLHttpRequest</title>
+
+    <script src="beluga2.js"></script>
+
 </head>
 <body>
     
+    <dl id="lista-usuarios">
+        <dt>Nome</dt>
+        <dd>Email</dd>
+    </dl>
+
 <script>
 
-    let xhr = new XMLHttpRequest();
+    (function(){
 
-    xhr.open("GET", "aula_json.json");
-    xhr.send(null);
-    xhr.onreadystatechange = verificaAjax;
+        function testeApi() {
+            let xhr = new XMLHttpRequest();
+            let url = "aula_json.json";
 
-    function verificaAjax() {
-        console.log(xhr.readyState);
-        console.log(xhr.status);
+            xhr.open("GET", url);
+            xhr.send(null);
+            xhr.onreadystatechange = verificaAjax;
 
-        if(xhr.readyState === 4) {
-            if(xhr.status == 200 || xhr.status === 304) {
-                console.log(xhr.responseText);
-            }
-            else {
-                alert("Erro");
-                console.log(xhr);           
+            function verificaAjax() {
+                console.log(xhr.readyState);
+                console.log(xhr.status);
+
+                if(xhr.readyState === 4) {
+                    if(xhr.status == 200 || xhr.status === 304) {                
+                        let resposta = JSON.parse(xhr.responseText);
+                        console.log(resposta);
+                    }
+                    else {
+                        alert("Erro");
+                        console.log(xhr);           
+                    }
+                }
             }
         }
-    }
+
+        // Function com API publica
+        function testeApiPublica() {
+            let xhr = new XMLHttpRequest();
+            let url = "https://jsonplaceholder.typicode.com/users/";
+            const $listaUsuarios = blg.$("#lista-usuarios");
+
+            xhr.open("GET", url);
+            xhr.send(null);
+            xhr.onreadystatechange = verificaAjax;
+
+            function verificaAjax() {
+                if(xhr.readyState === 4) {
+                    if(xhr.status == 200 || xhr.status === 304) {                
+                        let resposta = JSON.parse(xhr.responseText);
+                        mostraUsuarios(resposta);
+                    }
+                    else {
+                        alert("Erro");
+                        console.log(xhr);           
+                    }
+                }
+            }
+
+            function mostraUsuarios(usuarios) {
+                console.time('DOM');
+                const fragmento = document.createDocumentFragment();
+
+                usuarios.forEach( usuario => {
+                    adicionarElemento(fragmento, 'dt', usuario.name);
+                    adicionarElemento(fragmento, 'dd', usuario.email, usuario.phone, usuario.website);
+                });
+
+                $listaUsuarios.appendChild(fragmento);
+                console.timeEnd('DOM');
+            }
+
+            function adicionarElemento(container, tag, ...text) {
+
+                [...text].forEach( str => {
+                    let _tag = document.createElement(tag);
+                    let _textNode = document.createTextNode(str);
+                    _tag.appendChild(_textNode);
+                    container.appendChild(_tag);
+                })
+            }
+        }
+        
+        testeApi();
+        testeApiPublica();
+
+    })()
 
 </script>
 
