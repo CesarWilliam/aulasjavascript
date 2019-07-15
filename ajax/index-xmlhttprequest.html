@@ -93,12 +93,61 @@
         }
 
 
-        function getUser(id) {
+        function multiplasRequisicoes() {
 
+            const $listaUsuarios = blg.$('#lista-usuarios');
+
+            function getUser(id, callback) {
+                let xhr = new XMLHttpRequest();
+                let url = `https://jsonplaceholder.typicode.com/users/${id}`;
+                // const $listaUsuarios = blg.$('#lista-usuarios');
+
+                xhr.open("GET", url);
+                xhr.send(null);
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState === 4) {
+                        if(xhr.status == 200 || xhr.status === 304) {                
+                            let resposta = JSON.parse(xhr.responseText);
+
+                            if (callback && typeof callback === "function") {
+                                callback(resposta);
+                            }
+                        }
+                        else {
+                            alert("Erro");
+                            console.log(xhr);           
+                        }
+                    }
+                }
+            }
+
+            function mostraUsuarios(usuario) {
+                adicionarElemento($listaUsuarios, 'dt', usuario.id);
+                adicionarElemento($listaUsuarios, 'dd', usuario.name, usuario.email, usuario.phone, usuario.website);
+            }
+
+            function adicionarElemento(container, tag, ...text) {
+
+                [...text].forEach( str => {
+                    let _tag = document.createElement(tag);
+                    let _textNode = document.createTextNode(str);
+                    _tag.appendChild(_textNode);
+                    container.appendChild(_tag);
+                })
+            }
+
+            getUser(1, function(usuario){ 
+                mostraUsuarios(usuario);
+                getUser(2, function(usuario){
+                    mostraUsuarios(usuario);
+                });
+            });
         }
+
         
-        testeApi();
-        testeApiPublica();
+        multiplasRequisicoes();
+        // testeApi();
+        // testeApiPublica();
 
     })()
 
