@@ -7,7 +7,6 @@
     <title>Index - XMLHttpRequest</title>
 
     <script src="beluga2.js"></script>
-
 </head>
 <body>
     
@@ -45,7 +44,6 @@
             }
         }
 
-        // Function com API publica
         function testeApiPublica() {
             let xhr = new XMLHttpRequest();
             let url = "https://jsonplaceholder.typicode.com/users/";
@@ -91,7 +89,6 @@
                 })
             }
         }
-
 
         function multiplasRequisicoes() {
 
@@ -143,7 +140,6 @@
                 });
             });
         }
-
         
         function promises() {
             const $listaUsuarios = blg.$('#lista-usuarios');
@@ -222,7 +218,6 @@
             // });
         }
  
-
         function functionFetch() {
             const $listaUsuarios = blg.$('#lista-usuarios');
 
@@ -273,7 +268,6 @@
                 })
                 .catch(err => console.log(err.message))
         }
-
 
         function functionAwait() {
             const $listaUsuarios = blg.$('#lista-usuarios');
@@ -329,12 +323,63 @@
                 .catch(err => console.log(err.message))
         }
 
+        function functionMetodoXMLPost() {
+            let xhr = new XMLHttpRequest();
+            let url = "https://jsonplaceholder.typicode.com/posts/";
+            
+            //mude de GET para POST a fim de enviar dados
+            xhr.open("POST", url);
+            
+            //Precisamos informar no cabeçalho da requisição que estamos enviando um JSON ANTES do método send().
+            xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+            
+            xhr.send(JSON.stringify({"title":"foo", "body": "bar", "userId": 1}));
+            xhr.onreadystatechange = verificaAjax;            
+            
+                    
+            function verificaAjax(){
+                console.log(xhr.readyState);
+                console.log(xhr.status);
+                            
+                if(xhr.readyState === 4){
+                    //verificamos de é 201 pois algumas APIs retornam esse código quando um item é criado.
+                    if(xhr.status === 200 || xhr.status === 201 || xhr.status === 304){
+                    console.log(xhr.responseText);
+                    let resposta = xhr.responseText;
+                    resposta = JSON.parse(resposta);
+                    console.log(resposta);
+                    } else {
+                        alert('deu ruim na resposta');
+                        console.log(xhr);
+                    }                
+                }
+            }
+        }
+
+        function functionMetodoFetchPost() {
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                body: JSON.stringify({
+                title: 'foo',
+                body: 'bar',
+                userId: 1
+                }),
+                headers: {
+                "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+            .then(response => response.json())
+            .then(json => console.log(json))
+        }
+
         // multiplasRequisicoes();
         // testeApi();
         // testeApiPublica();
         // promises();
         // functionFetch();
-        functionAwait();
+        // functionAwait();
+        // functionMetodoXMLPost();
+        // functionMetodoFetchPost();
 
     })()
 
