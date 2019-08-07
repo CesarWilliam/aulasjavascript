@@ -18,3 +18,11 @@ Curso de javascript vanilla
 - BOM 
 - Estilização
 - Controle de fluxo
+- Prototypes
+- OOP
+- MVC
+- Módulos do ES2015 (ES6)
+- LocalStorage
+- Ajax
+- TypeScript
+- Expressões Regulares

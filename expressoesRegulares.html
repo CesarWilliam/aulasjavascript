@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Expressões Regulares</title>
+
+    <script src="./beluga2.js"></script>
+</head>
+<body>
+
+    <!-- Regex 
+    
+        - Padrões utilizados para encontrar, modificar ou validar determinados padrões em strings
+        - https://regexr.com/
+
+        
+    ============================================================================================================================    
+
+    - Caracter "." (ponto) = caracter "coringa", utilizado para unir duas letras onde são citadas as extremidades da expressão. Representa um caracter qualquer.
+    
+    Exemplo: 
+    Frase: "teste 1233456t546"    
+    Expressão: /1...4/g
+
+    Resultado: "12334"
+
+    Obs: para pegar realmente o caracter ponto é preciso "escapar" ele da expressão utilizando a barra invertida (\).
+    
+    Exemplo:
+    Expressão: \.[gp]ato/g
+
+    Obs2: dentro do conchetes o ponto se torna um caracter literal, realmente um caracter de ponto não sendo um coringa.
+
+    ============================================================================================================================
+
+    - Caracter "|" (pipe) = caracter utilizado como "ou", igual no if do js, mas apenas com um pipe e não dois.
+
+    Exemplo: 
+    Frase: "teste 1233456t546"    
+    Expressão: /1...4|546/g
+
+    Resultado: "12334546"
+    
+    ============================================================================================================================
+
+    - Caracteres "[]" (colchetes) = utilizado para criar um grupo, onde colocado os caracteres específicos dentro dele pode apresentar resultados diferentes.
+    Funciona como se fosse um único caracter, utilizando o "ou" como leitura
+
+    Exemplo: 
+    Frase: "gato pato sapato gato"
+    Expressão: /[pg]ato/g
+
+    Resultado "gato pato pato gato"
+
+    ============================================================================================================================
+
+    - Caracter "-" = utilizado para sinalizar um intervalo entre caracteres específicos
+
+    Exemplo:
+    Expressão: /[1-9]/g
+
+    Resultado: encontrar valores de 1 até 9.
+
+    ============================================================================================================================
+
+    - Caracteres chaves "{}" = utilizado como quantificadores
+
+    Exemplo: 
+    Expressão /[1-9]{4}/g
+
+    Resultado: Multiplica em 4 vezes para pesquisar o grupo dentro da expressão
+
+    Obs: utilizar vírgula dentro das chaves para determinar um intervalo entre caracteres
+
+    Expressão: /[\d]{4,6}/g
+    Resultado: Multiplica no mínimo 3 e máximo 6. 
+
+    Obs2: se utilizar vírgula no fim das chaves retorna toda a expressão, sem intervalos
+
+    Expressão: [\d]{4,}/g
+    Resultado: todos os caracteres no mínimo 4 vezes
+
+    ============================================================================================================================
+
+    - Caracter "\d" = se refere a qualquer dígito de 1 a 9
+
+    Exemplo:
+    Expressão: /[\d]{4}/g
+
+    Resultado: retorna os valores de 1 a 9.
+    
+    ============================================================================================================================
+
+    - Caracter "\w" = se refere ao qualquer letra ou underscore
+
+    Exemplo:
+    Expressão: /[\w]
+
+    Resultado: retorna todas as palavras 
+
+    ============================================================================================================================
+
+    - Regra para maiúsculas e minúsculas [a-wA-Z]
+
+    ============================================================================================================================
+
+    - Caracter "?" = representa 0 ou mais vezes 
+
+    ============================================================================================================================
+
+    - Boundary "\b" = é utilizado quando indica o inicio ou fim de onde será selecionado os caracteres
+    
+    Exemplo:
+    Frase: "o pato tem sapato de gato xxatoyy ato atoxxx"
+    Expressão: /\w-ato\b/g (começa com um caracter qualquer e termina com os caracteres "ato")
+
+    Resultado: "pato sapato gato"
+
+    Exemplo2:
+    Frase: "o pato tem sapato de gato xxatoyy ato atoxxx"
+    Expressão: "/\bato/g"
+
+    Resultado: "ato"
+
+    Exemplo3:
+    Frase: "o pato tem sapato de gato xxatoyy ato atoxxx"
+    Expressão: "/\bato\w+/g"
+
+    Resultado: "atoxxx"
+
+    ============================================================================================================================
+
+    - Pegar uma expressão html
+
+    <h1 id="id">teste</h1>
+
+    Expressão: /<h1.+>/g
+
+    Se colocar o ponto de ? no final, seleciona até o último elemento setado
+
+    Expressão: /<h1.+?>/g
+    resultado: "<h1 id="id">"
+
+    ============================================================================================================================
+
+    -->
+
+    <!-- Problema -->
+    <!-- Criar uma regexp para validar o CEP -->
+
+    <script>
+    
+    var cep = '01234-050';
+
+    function isValidCEP(str) {
+        var regex = /^\d{5}-\d{3}$/gi; // pegar 5 quaiqers caracteres antes do traço e 3 depois do traço, sendo global e case sensitive
+        // g - global
+        // i - case sensitive
+        // m - multiline
+        return regex.test(str);
+    }
+    
+    </script>
+
+    <!-- ============================================================================================================================ -->
+
+    <!-- Desafio -->
+    <!-- Validar email ou CPF -->
+
+    <input type="text" id="text">
+    <button id="btn" disabled="disable">Validar</button>
+
+    <script>
+    
+    (function(){
+        let $text = blg.$('#text');
+        let $btn = blg.$('#btn');
+
+        let padraoCPF = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/; // começa com "^" e delimilita que termina com "$"
+        let padraoEmail = /^[\w._-]+@[\w_.-]+\.[\w]/i; 
+
+        // $text.addEventListener('input', function() {
+        //     let texto = this.value;
+
+        //     if (padraoCPF.test(texto) || padraoEmail.test(texto)){
+        //         $btn.disabled = false;
+        //     }
+        //     else {
+        //         $btn.disabled = true;
+        //     }
+
+        // })
+
+        $text.addEventListener('input', function() {
+            let texto = this.value;
+            $btn.disabled = !(padraoCPF.test(texto) || padraoEmail.test(texto));
+        })
+    })()
+    
+    </script>
+
+    <!-- ============================================================================================================================ -->
+
+    <!-- Problema -->
+    <!-- Trocar em todos os parágrafos datas no DD/MM/AAAA por sua forma extensa: -->
+    <!-- DD de MM de AAAA -->
+
+
+</body>
+</html>
