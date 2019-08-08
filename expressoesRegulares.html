@@ -169,8 +169,8 @@
     <!-- Desafio -->
     <!-- Validar email ou CPF -->
 
-    <input type="text" id="text">
-    <button id="btn" disabled="disable">Validar</button>
+    <!-- <input type="text" id="text">
+    <button id="btn" disabled="disable">Validar</button> -->
 
     <script>
     
@@ -207,6 +207,65 @@
     <!-- Trocar em todos os parágrafos datas no DD/MM/AAAA por sua forma extensa: -->
     <!-- DD de MM de AAAA -->
 
+    <script>
+    
+        (function(){
+            let str = 'Hoje é 26/02/2018 e amanhã será 27/02/2018. Meu aniversário é 1/01';
+            let meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+
+            function formatData(str){
+                
+                let regex = /(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/g;
+
+                return str.replace(regex, function(a,b,c,d,e,f){ // a = retorna todo o regex; b = retorna o valor do primeiro grupo; c = retorna o valor do segundo grupo; d = retorna o valor do terceiro grupo; e = posição que encontrou na string; f = toda a string;
+                    let dia =  b + ' de ' + meses[parseInt(c) - 1];
+                    dia += (d) ? ' de ' + d : '';
+                    return dia;
+                })
+            }
+
+            str = formatData(str);
+            console.log(str);
+        })()
+    
+    </script>
+
+    <!-- ============================================================================================================================ -->
+
+    <!-- search() e match() -->
+
+    <script>
+    
+    let str = 'Hoje é 26/02/2018 e amanhã será 27/02/2018. Meu aniversário é 1/01';
+    let regex = /\d{1,2}/;
+    let regex2 = /\d{1,2}/g;
+
+    let teste = str.search(regex); // search mostra a posição do regex
+
+    let teste2 = str.match(regex); // retorna um array, com o primeiro indice é a string buscada, o segundo a posição do regex, o terceiro toda a string
+    
+    let teste3 = str.match(regex2); // no regex2 utiliza o "g" de global, onde retorna um array com todos os grupos do regex separados
+    </script>
+
+
+    <!-- ============================================================================================================================ -->
+
+    <!-- exec() -->
+
+    <script>
+        // exemplo
+
+        let str = 'o pato chato tem sapato de gato';
+        let regex = /([gp]|ch)ato/g;
+        let arr;
+
+        while( arr = regex.exec(str)) { // o exec atualiza as expressões regulares, passando cada expressão com um array trazendo seus dados separados
+            let msg = "Encontrei " + arr[0] + ' em ' + arr.index + '.';
+            msg += ' Próximo começa em ' + regex.lastIndex;
+            console.log(msg);
+        }
+
+    </script>
 
 </body>
 </html>
