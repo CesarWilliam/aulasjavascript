@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EcmaScript 2015 (ES6)</title>
+</head>
+<body>
+
+    <!-- EcmaScript 2015 (ES6) 
+    
+    Ferramenta para compilar ES6 para a versão mais antiga do js:
+    - Babel
+    
+    -->
+
+    <!-- ========================================================================================================================== -->
+
+    <!-- Let e const -->
+
+    <script>
+
+    //=== "var" apresentam escopo de uma função, ou seja, mantém valores escopados dentro de variáveis
+
+    // var n = 0;
+    // function mostrarN() {
+    //     console.log('n',n); == undefined, pois o "var n = 1" cancela o valor de n dentro da função
+
+    //     var n = 1;
+    // }
+
+    // mostrarN();
+    // console.log('n', n); == 0";
+
+ 
+
+    //=== "let" apresenta escopo de bloco e não de função. 
+    // Let não permite que crie duas variáveis com mesmo nome.
+    // o let só pode ser utilizado quando já declarado, antes de executar qualquer função que utilize essa variavel. 
+
+
+
+    //=== "const" apresenta mesmas caracteristicas do let, mas não é possível reatribuir um novo valor na constante.    
+    
+    </script>
+
+
+    <!-- ========================================================================================================================== -->
+
+    <!-- arrow functions -->
+
+    <script>
+    
+    let will = {
+        nome: 'Will',
+        notas: [1,2,3,4],
+        // toString: function() {            
+        //     console.log(`As notas de ${this.nome} foram: `);
+        //     this.notas.forEach( function(nota, i) {
+        //         console.log(`A nota ${i + 1} de ${this.nome} foi ${nota}`) // o this.nome não funciona nesse caso, pois o escopo mudou devido estar chamando o callback da função, o escopo this está no forEach, pra isso utiliza o arrow function
+        //     }) 
+        // },
+        toString: function() {            
+            console.log(`As notas de ${this.nome} foram: `);
+            this.notas.forEach( (nota, i) => console.log(`A nota ${i + 1} de ${this.nome} foi ${nota}`)) // o this.nome não funciona nesse caso, pois o escopo mudou devido estar chamando o callback da função, o escopo this está no forEach, pra isso utiliza o arrow function
+        },
+
+        surpresa: function() {
+            console.log(`O aluno ${this.nome} foi ...`);
+            setTimeout( () => { console.log(`Parabens ${this.nome}. Voce foi aprovado`);
+            }, 1000)
+        }
+    }
+
+    // will.toString();
+    // will.surpresa();
+
+    // com o arrow function, o escopo principal do "this" é o objeto window, não o valor de dentro de uma função
+    
+    </script>
+    
+
+    <!-- ========================================================================================================================== -->
+
+    <!-- Spread e rest operators -->
+
+    <script>
+
+    // Exemplo Rest
+    function mostraNomes(...nomes) { 
+        nomes.forEach( nome=> console.log(nome))
+    }
+
+    mostraNomes('Will', 'maria', 'mario');
+    
+    // Exemplo Spread
+    let nomes = ['Will', 'maria', 'mario']; // no spread ele pega um array ou um objeto, separa as informações e exibe
+    mostraNomes(...nomes);
+
+    </script>
+
+
+    <!-- ========================================================================================================================== -->
+
+    <!-- Default Values -->
+
+    <script>
+    
+    function criarAluno(nome, nota = 0) { // o nota = 0 se torna um valor default caso não haja valor no parâmetro
+        console.log(`Criar aluno ${nome} com nota ${nota.toFixed(2)}`);
+    }
+
+    criarAluno('Will', 0);
+    criarAluno('Lia', 5);
+    criarAluno('Leona');
+    
+    </script>
+
+
+    <!-- ========================================================================================================================== -->
+
+    <!-- Propriedades dinâmicas -->
+
+    <script>
+    
+    var a = 1;
+    var b = 'teste';
+    var c = [1,2,3];
+
+    //ES5
+    const obj1 = {
+        a: a,
+        b: b,
+        c: c
+    }
+
+    //ES6
+    const obj2 = {a, b, c};
+    
+    </script>
+
+
+    <!-- ========================================================================================================================== -->
+
+    <!-- for ... of -->
+
+    <script>
+
+    // Exemplo ES5
+
+    var objeto1 = {
+        a: 'teste a',
+        b: 'teste b'
+    }
+    var array1 = [1,2,3,4,5];
+
+    console.log('------');
+
+    for (let propriedade in objeto1) {
+        console.log(propriedade);
+        console.log(objeto1[propriedade]);
+    }
+
+    console.log('------');
+
+    // Exemplo ES6
+
+    for (let valor of array1) {
+        console.log('valor: ', valor); 
+    }
+
+    console.log('------');
+
+    for (valor of Object.values(objeto1)){ // for of com objeto não funciona, apenas com array, por isso é necessário passar objeto para um array com os valores do objeto, assim utiliza o "Object.values()"; 
+        console.log(valor);
+    }
+
+    console.log('------');
+    
+    for (valor of Object.keys(objeto1)){  
+        console.log(valor);
+    }
+
+    console.log('------');
+
+    </script>
+
+
+    <!-- ========================================================================================================================== -->
+
+    <!-- template strings e tagged templates -->
+
+    <script>
+    // Exemplo de template string
+
+    const nomeTeste = 'Will',
+          idade = 22;
+    
+    var string2 = `O ${nomeTeste} possui ${idade} anos`; // template string
+    console.log(string2);    
+
+    function trataIdade(strings, ...variaveis) {
+        console.log(strings);
+        console.log(variaveis);
+        var idade = variaveis[1];
+        
+        if (idade === 1) {
+            strings[2] = 'ano';
+        }
+
+        var result = [];
+        strings.forEach((str, i) => {
+            result.push(str)
+
+            if(variaveis[i] !== undefined) {
+                result.push(variaveis[i]);
+            }
+        });
+
+        return result.join('');
+    }
+
+    var string3 = trataIdade`O ${nomeTeste} possui ${idade} anos`;
+
+    const aluno = 'Jose';
+    const media = 1.234;
+
+    function trataNota(strings, ...valores) {
+        const result = [];
+        valores.forEach( (valor, i) => {
+            if (strings[i] !== undefined) result.push(strings[i]);
+            valor = isNaN(valor) ? valor : valor.toFixed(2);
+
+            if (valor) result.push(valor);
+        })
+        return result.join('');
+    }
+
+    console.log(trataNota`O ${aluno} tem media ${media}`);
+    console.log('------');
+
+    </script>
+
+
+    <!-- ========================================================================================================================== -->
+
+    <!-- Array.from() e Array.of() -->
+
+    <h2>teste1</h2>
+    <h2>teste2</h2>
+    <h2>teste3</h2>
+
+    <script>
+    
+    //Exemplo Array.of
+
+    var array3 = new Array(3); // quando utilizado número, criado dessa forma sem o of, o array será criado com 3 indices vazios
+    var array4 = new Array.of(3); // quando criado com o .of, será criado um array com o indice "3"
+    
+    console.log(array3);
+    console.log(array4);
+
+    //Exemplo Array.from
+
+    var titles = document.querySelectorAll('h2');
+    var arrTitles = Array.from(titles); // o array from é utilizado para copiar os indices de um array para outro. No exemplo, pega um NodeList e passa para um existente
+
+    console.log(titles);
+
+    </script>
+    
+    
+</body>
+</html>

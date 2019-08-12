@@ -164,6 +164,7 @@
     
     </script>
 
+
     <!-- ============================================================================================================================ -->
 
     <!-- Desafio -->
@@ -201,6 +202,7 @@
     
     </script>
 
+
     <!-- ============================================================================================================================ -->
 
     <!-- Problema -->
@@ -215,9 +217,9 @@
 
             function formatData(str){
                 
-                let regex = /(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/g;
+                let regex2 = /(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/g;
 
-                return str.replace(regex, function(a,b,c,d,e,f){ // a = retorna todo o regex; b = retorna o valor do primeiro grupo; c = retorna o valor do segundo grupo; d = retorna o valor do terceiro grupo; e = posição que encontrou na string; f = toda a string;
+                return str.replace(regex2, function(a,b,c,d,e,f){ // a = retorna todo o regex; b = retorna o valor do primeiro grupo; c = retorna o valor do segundo grupo; d = retorna o valor do terceiro grupo; e = posição que encontrou na string; f = toda a string;
                     let dia =  b + ' de ' + meses[parseInt(c) - 1];
                     dia += (d) ? ' de ' + d : '';
                     return dia;
@@ -230,21 +232,22 @@
     
     </script>
 
+
     <!-- ============================================================================================================================ -->
 
     <!-- search() e match() -->
 
     <script>
     
-    let str = 'Hoje é 26/02/2018 e amanhã será 27/02/2018. Meu aniversário é 1/01';
-    let regex = /\d{1,2}/;
-    let regex2 = /\d{1,2}/g;
+    let str2 = 'Hoje é 26/02/2018 e amanhã será 27/02/2018. Meu aniversário é 1/01';
+    let regex3 = /\d{1,2}/;
+    let regex4 = /\d{1,2}/g;
 
-    let teste = str.search(regex); // search mostra a posição do regex
+    let teste = str2.search(regex3); // search mostra a posição do regex3
 
-    let teste2 = str.match(regex); // retorna um array, com o primeiro indice é a string buscada, o segundo a posição do regex, o terceiro toda a string
+    let teste2 = str2.match(regex3); // retorna um array, com o primeiro indice é a string buscada, o segundo a posição do regex3, o terceiro toda a string
     
-    let teste3 = str.match(regex2); // no regex2 utiliza o "g" de global, onde retorna um array com todos os grupos do regex separados
+    let teste3 = str2.match(regex4); // no regex4 utiliza o "g" de global, onde retorna um array com todos os grupos do regex3 separados
     </script>
 
 
@@ -255,17 +258,69 @@
     <script>
         // exemplo
 
-        let str = 'o pato chato tem sapato de gato';
-        let regex = /([gp]|ch)ato/g;
+        let str3 = 'o pato chato tem sapato de gato';
+        let regex5 = /([gp]|ch)ato/g;
         let arr;
 
-        while( arr = regex.exec(str)) { // o exec atualiza as expressões regulares, passando cada expressão com um array trazendo seus dados separados
+        while( arr = regex5.exec(str3)) { // o exec atualiza as expressões regulares, passando cada expressão com um array trazendo seus dados separados
             let msg = "Encontrei " + arr[0] + ' em ' + arr.index + '.';
-            msg += ' Próximo começa em ' + regex.lastIndex;
+            msg += ' Próximo começa em ' + regex5.lastIndex;
             console.log(msg);
         }
 
     </script>
+
+
+    <!-- ============================================================================================================================ -->
+
+    <!-- new Regex() == é utilizando quando o valor da regex é dinâmico, utilizando variável -->
+
+    <script>
+    
+    let testeRegex = 'abc';
+    let str4 = "procurando texto abc neste paragrafo. Abc encontrado";
+
+    let regex6 = new RegExp(testeRegex, 'gi'); // "g" significa que ele é global; "i" significa que ele ignora maiusculas e minusculas
+
+    console.log(regex6.exec(str4));
+    
+    </script>
+
+
+    <!-- ============================================================================================================================ -->
+
+    <!-- Desafio -->
+    <!-- Transforma uma URI em um objeto Javascript -->
+
+    <script>
+    
+    let uri = 'http://teste.com.br/index.html?ola=mundo&user=daniel&id=123';
+    let expressao = /[&?](\w+)=(\w+)/g; // dentro do colchetes ele retira todos os "&" e "?". Separa os grupos que apresentam "uma string" "=" "outra string (ola=mundo) (user=daniel)"
+    
+    let array, parametros = {};
+
+    while(array = expressao.exec(uri)) {
+        parametros[array[1]] = array[2];
+    }
+    console.log(parametros);
+
+    </script>
+
+    <!-- ============================================================================================================================ -->
+
+    <!-- Negação
+        
+        Uma das maneiras de criarmos uma negação é usarmos o acento "^" dentro de agrupadores. Veja:
+
+        [^xyz] Casa com qualquer caracter que não seja x, y ou z.
+
+        Uma outra forma de negarmos é utilizando classes de caracteres. Lembra que "\d" representa dígitos e "\w" representa um wordchar? Pois bem, suas variações maiusculas representam as respectivas negações. Veja:
+
+        "\D" representa o que não for dígito e "\W" casa com qualquer caracter que não seja [a-Z], [0-9] e underscore (_)
+
+        Da mesma forma "\B" (que é o oposto de \b) busca caracteres que não estão no início ou fim de uma palavra.
+
+        Nós também vimos que "\s" busca espaços em branco. Tente adivinhar o que casa com "\S". Faça experimentos. -->
 
 </body>
 </html>
