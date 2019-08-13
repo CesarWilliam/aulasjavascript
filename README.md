@@ -26,3 +26,4 @@ Curso de javascript vanilla
 - Ajax
 - TypeScript
 - Expressões Regulares
+- Testes
